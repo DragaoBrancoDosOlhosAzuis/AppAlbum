@@ -1,0 +1,6 @@
+npx create-expo-app AppAlbum
+cd AppAlbum
+npx expo install expo-camera
+npm install axios
+npx json-server --watch db.json --port 3000   # (em outro terminal)
+npx expo start
