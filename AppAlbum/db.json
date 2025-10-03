@@ -1,3 +1,18 @@
 {
-  "fotos": []
+  "photos": [
+    {
+      "id": "cc23",
+      "titulo_foto": "Titulo",
+      "descricao_foto": "Desc",
+      "data_foto": "2025-10-03T23:48:26.113Z",
+      "uri": "file:///data/user/0/host.exp.exponent/files/photo_1759535306103.jpg"
+    },
+    {
+      "id": "7409",
+      "titulo_foto": "Opaaa",
+      "descricao_foto": "",
+      "data_foto": "2025-10-03T23:48:39.404Z",
+      "uri": "file:///data/user/0/host.exp.exponent/files/photo_1759535319401.jpg"
+    }
+  ]
 }
