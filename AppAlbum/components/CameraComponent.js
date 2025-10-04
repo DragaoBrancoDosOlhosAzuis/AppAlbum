@@ -1,109 +1,111 @@
-import React, { useState, useRef } from "react";
-import { View, StyleSheet, Alert } from "react-native";
-import { CameraView, useCameraPermissions } from "expo-camera";
-import CameraControls from "./CameraControls";
-import PhotoPreview from "./PhotoPreview";
+import react, { usestate, useref } from react
+import { view, stylesheet, alert } from react-native
+import { cameraview, usecamerapermissions } from expo-camera
+import cameracontrols from ./cameracontrols
+import photopreview from ./photopreview
 
-export default function CameraComponent({ onPhotoCaptured, onSavePhoto }) {
-  const [facing, setFacing] = useState("back");
-  const [capturedPhoto, setCapturedPhoto] = useState(null);
-  const cameraRef = useRef(null);
-  const [permission, requestPermission] = useCameraPermissions();
+export default function cameracomponent({ onphotocaptured, onsavephoto }) {
+  // estado da camera (frontal ou traseira)
+  const [facing, setfacing] = usestate("back")
+  // foto que foi tirada
+  const [capturedphoto, setcapturedphoto] = usestate(null)
+  // referencia da camera
+  const cameraref = useref(null)
+  // permissao de usar camera
+  const [permission, requestpermission] = usecamerapermissions()
 
-  // Solicitar permissão ao montar o componente
-  React.useEffect(() => {
-    requestPermission();
-  }, []);
+  // pede permissao quando o componente monta
+  react.useeffect(() => {
+    requestpermission()
+  }, [])
 
-  // Verificar permissões
-  if (!permission) return <View />;
+  // se nao tiver permissao ainda, mostra view vazia
+  if (!permission) return <view />
 
+  // se permissao negada, mostra mensagem
   if (!permission.granted) {
     return (
-      <View style={styles.permissionContainer}>
-        <Text style={styles.permissionText}>
-          Precisamos da sua permissão para usar a câmera
-        </Text>
-        <Button title="Conceder Permissão" onPress={requestPermission} />
-      </View>
-    );
+      <view style={styles.permissioncontainer}>
+        <text style={styles.permissiontext}>precisamos da sua permissao para usar a camera</text>
+        <button title="conceder permissao" onpress={requestpermission} />
+      </view>
+    )
   }
 
-  // Alternar entre câmera frontal e traseira
-  const toggleCameraFacing = () => {
-    setFacing(current => (current === "back" ? "front" : "back"));
-  };
+  // alterna camera frente/traseira
+  const togglecamerafacing = () => {
+    setfacing(current => (current === "back" ? "front" : "back"))
+  }
 
-  // Capturar foto
-  const takePicture = async () => {
-    if (!cameraRef.current) return;
-
+  // tira a foto
+  const takepicture = async () => {
+    if (!cameraref.current) return
     try {
-      const photo = await cameraRef.current.takePictureAsync();
-      setCapturedPhoto(photo);
-      onPhotoCaptured?.(photo);
+      const photo = await cameraref.current.takepictureasync()
+      setcapturedphoto(photo)
+      onphotocaptured?.(photo)
     } catch (error) {
-      Alert.alert("Erro", "Não foi possível capturar a foto");
+      alert.alert("erro", "nao foi possivel capturar a foto")
     }
-  };
+  }
 
-  // Salvar foto
-  const handleSavePhoto = async () => {
-    if (!capturedPhoto) return;
-
+  // salva a foto
+  const handlesavephoto = async () => {
+    if (!capturedphoto) return
     try {
-      await onSavePhoto(capturedPhoto);
-      setCapturedPhoto(null);
+      await onsavephoto(capturedphoto)
+      setcapturedphoto(null)
     } catch (error) {
-      Alert.alert("Erro", "Não foi possível salvar a foto");
+      alert.alert("erro", "nao foi possivel salvar a foto")
     }
-  };
+  }
 
-  // Retornar para a câmera
-  const retakePhoto = () => {
-    setCapturedPhoto(null);
-  };
+  // volta pra camera, descarta a foto tirada
+  const retakephoto = () => {
+    setcapturedphoto(null)
+  }
 
-  // Renderizar preview da foto ou câmera
-  if (capturedPhoto) {
+  // se ja tirou foto, mostra preview
+  if (capturedphoto) {
     return (
-      <PhotoPreview
-        photo={capturedPhoto}
-        onRetake={retakePhoto}
-        onSave={handleSavePhoto}
+      <photopreview
+        photo={capturedphoto}
+        onretake={retakephoto}
+        onsave={handlesavephoto}
       />
-    );
+    )
   }
 
+  // renderiza camera com controles
   return (
-    <View style={styles.container}>
-      <CameraView style={styles.camera} ref={cameraRef} facing={facing}>
-        <CameraControls
-          onFlipCamera={toggleCameraFacing}
-          onTakePicture={takePicture}
+    <view style={styles.container}>
+      <cameraview style={styles.camera} ref={cameraref} facing={facing}>
+        <cameracontrols
+          onflipcamera={togglecamerafacing}
+          ontakepicture={takepicture}
         />
-      </CameraView>
-    </View>
-  );
+      </cameraview>
+    </view>
+  )
 }
 
-const styles = StyleSheet.create({
+const styles = stylesheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifycontent: "center", // centraliza vertical
   },
   camera: {
     flex: 1,
   },
-  permissionContainer: {
+  permissioncontainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifycontent: "center",
+    alignitems: "center",
     padding: 20,
   },
-  permissionText: {
-    fontSize: 16,
-    textAlign: "center",
-    marginBottom: 20,
+  permissiontext: {
+    fontsize: 16,
+    textalign: "center",
+    marginbottom: 20,
   },
-});
+})

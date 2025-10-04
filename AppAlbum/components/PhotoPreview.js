@@ -1,37 +1,40 @@
-import React from "react";
-import { View, Image, Button, StyleSheet } from "react-native";
+import react from react
+import { view, image, button, stylesheet } from react-native
 
-export default function PhotoPreview({ photo, onRetake, onSave }) {
+export default function photopreview({ photo, onretake, onsave }) {
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: photo.uri }} style={styles.previewImage} />
+    <view style={styles.container}>
+      // mostra a foto tirada
+      <image source={{ uri: photo.uri }} style={styles.previewimage} />
       
-      <View style={styles.buttonsContainer}>
-        <View style={styles.button}>
-          <Button title="Tirar Outra Foto" onPress={onRetake} />
-        </View>
+      <view style={styles.buttonscontainer}>
+        <view style={styles.button}>
+          // botao para tirar outra foto
+          <button title="tirar outra foto" onpress={onretake} />
+        </view>
         
-        <View style={styles.button}>
-          <Button title="Salvar Foto" onPress={onSave} />
-        </View>
-      </View>
-    </View>
-  );
+        <view style={styles.button}>
+          // botao para salvar foto
+          <button title="salvar foto" onpress={onsave} />
+        </view>
+      </view>
+    </view>
+  )
 }
 
-const styles = StyleSheet.create({
+const styles = stylesheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifycontent: "center", // centraliza vertical
   },
-  previewImage: {
+  previewimage: {
     flex: 1,
-    resizeMode: "contain",
+    resizemode: "contain", // ajusta imagem sem cortar
   },
-  buttonsContainer: {
+  buttonscontainer: {
     padding: 20,
   },
   button: {
-    marginVertical: 5,
+    marginvertical: 5, // espaco entre botoes
   },
-});
+})

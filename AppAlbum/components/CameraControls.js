@@ -1,35 +1,37 @@
-import React from "react";
-import { TouchableOpacity, Text, View, StyleSheet } from "react-native";
+import react from react
+import { touchableopacity, text, view, stylesheet } from react-native
 
-export default function CameraControls({ onFlipCamera, onTakePicture }) {
+export default function cameracontrols({ onflipcamera, ontakepicture }) {
   return (
-    <View style={styles.controlsContainer}>
-      <TouchableOpacity style={styles.controlButton} onPress={onFlipCamera}>
-        <Text style={styles.controlText}>Virar Câmera</Text>
-      </TouchableOpacity>
+    <view style={styles.controlscontainer}>
+      // botao para virar camera
+      <touchableopacity style={styles.controlbutton} onpress={onflipcamera}>
+        <text style={styles.controltext}>virar camera</text>
+      </touchableopacity>
       
-      <TouchableOpacity style={styles.controlButton} onPress={onTakePicture}>
-        <Text style={styles.controlText}>Tirar Foto</Text>
-      </TouchableOpacity>
-    </View>
-  );
+      // botao para tirar foto
+      <touchableopacity style={styles.controlbutton} onpress={ontakepicture}>
+        <text style={styles.controltext}>tirar foto</text>
+      </touchableopacity>
+    </view>
+  )
 }
 
-const styles = StyleSheet.create({
-  controlsContainer: {
+const styles = stylesheet.create({
+  controlscontainer: {
     flex: 1,
-    flexDirection: "row",
-    backgroundColor: "transparent",
+    flexdirection: "row", // organiza botoes lado a lado
+    backgroundcolor: "transparent",
     margin: 64,
   },
-  controlButton: {
+  controlbutton: {
     flex: 1,
-    alignItems: "center",
-    alignSelf: "flex-end",
+    alignitems: "center", // centraliza horizontal
+    alignself: "flex-end", // posiciona no final
   },
-  controlText: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#fff",
+  controltext: {
+    fontsize: 18,
+    fontweight: "bold",
+    color: "#fff", // texto branco
   },
-});
+})

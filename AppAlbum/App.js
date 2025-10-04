@@ -1,29 +1,32 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { StatusBar } from "expo-status-bar";
+import react from react
+import { navigationcontainer } from @react-navigation/native
+import { createnativestacknavigator } from @react-navigation/native-stack
+import { statusbar } from expo-status-bar
 
-import CameraScreen from "./screens/CameraScreen";
-import PhotoListScreen from "./screens/PhotoListScreen";
+import camerascreen from ./screens/camerascreen
+import photolistscreen from ./screens/photolistscreen
 
-const Stack = createNativeStackNavigator();
+const stack = createnativestacknavigator()
 
-export default function App() {
+export default function app() {
   return (
-    <NavigationContainer>
-      <StatusBar style="auto" />
-      <Stack.Navigator initialRouteName="PhotoList">
-        <Stack.Screen 
-          name="PhotoList" 
-          component={PhotoListScreen} 
-          options={{ title: "Meu Álbum de Fotos" }} 
+    // container da navegacao
+    <navigationcontainer>
+      <statusbar style="auto" />
+      <stack.navigator initialroutename="photolist">
+        // tela do album de fotos
+        <stack.screen 
+          name="photolist" 
+          component={photolistscreen} 
+          options={{ title: "meu album de fotos" }} 
         />
-        <Stack.Screen 
-          name="Camera" 
-          component={CameraScreen} 
-          options={{ title: "Tirar Foto" }} 
+        // tela da camera
+        <stack.screen 
+          name="camera" 
+          component={camerascreen} 
+          options={{ title: "tirar foto" }} 
         />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+      </stack.navigator>
+    </navigationcontainer>
+  )
 }

@@ -1,42 +1,43 @@
-import React from "react";
-import { Alert } from "react-native";
-import * as FileSystem from "expo-file-system/legacy";
-import CameraComponent from "../components/CameraComponent";
-import { apiService } from "../services/api";
+import react from react
+import { alert } from react-native
+import * as filesystem from expo-file-system/legacy
+import cameracomponent from ../components/cameracomponent
+import { apiservice } from ../services/api
 
-export default function CameraScreen() {
-  // Salvar foto no servidor
-  const handleSavePhoto = async (photo) => {
+export default function camerascreen() {
+  // funcao para salvar foto
+  const handlesavephoto = async (photo) => {
     try {
-      // Criar nome único para a foto
-      const fileName = `photo_${Date.now()}.jpg`;
-      const newPath = FileSystem.documentDirectory + fileName;
+      // cria nome unico pra foto
+      const filename = `photo_${Date.now()}.jpg`
+      const newpath = filesystem.documentdirectory + filename
       
-      // Mover foto do cache temporário para armazenamento persistente
-      await FileSystem.moveAsync({
+      // move foto do cache temporario pro armazenamento
+      await filesystem.moveasync({
         from: photo.uri,
-        to: newPath,
-      });
+        to: newpath,
+      })
 
-      // Criar objeto da foto
-      const photoData = {
-        titulo_foto: "Sem Título",
+      // objeto com info da foto
+      const photodata = {
+        titulo_foto: "sem titulo",
         descricao_foto: "",
         data_foto: new Date().toISOString(),
-        uri: newPath,
-      };
+        uri: newpath,
+      }
 
-      // Salvar no JSON Server
-      await apiService.addPhoto(photoData);
+      // salva no servidor
+      await apiservice.addphoto(photodata)
       
-      Alert.alert("Sucesso", "Foto salva com sucesso!");
+      alert.alert("sucesso", "foto salva com sucesso!")
     } catch (error) {
-      console.error("Erro ao salvar foto:", error);
-      Alert.alert("Erro", "Não foi possível salvar a foto");
+      console.error("erro ao salvar foto:", error)
+      alert.alert("erro", "nao foi possivel salvar a foto")
     }
-  };
+  }
 
   return (
-    <CameraComponent onSavePhoto={handleSavePhoto} />
-  );
+    // renderiza camera component passando funcao de salvar
+    <cameracomponent onsavephoto={handlesavephoto} />
+  )
 }
