@@ -1,3 +1,6 @@
+// Guilhermi Enrique da Silva & Hugo de Oliveira
+
+
 import react from react
 import { navigationcontainer } from @react-navigation/native
 import { createnativestacknavigator } from @react-navigation/native-stack
