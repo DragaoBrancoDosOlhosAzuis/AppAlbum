@@ -1,5 +1,6 @@
 Instalar dependências:
 
+npm install
 npx expo install
 npx expo install expo-camera expo-file-system
 npm install -g json-server
